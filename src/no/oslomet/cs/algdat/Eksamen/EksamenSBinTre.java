@@ -98,14 +98,18 @@ public class EksamenSBinTre<T> {
 
     public boolean fjern(T verdi) {
         // Op6
-        //
+        // Kopiere Programkode 5.2 8 d), se; pdf link
+            // + endringer for at peker "forender" får korrekt verdi i alle node etter en fjerning
 
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public int fjernAlle(T verdi) {
         // Op6
-        //
+        // Skal fjerne alle forekomster av verdi i treet
+            // OBS! Duplikater er tillat, aka. en og samme verdi kan ligge flere steder i treet
+        // Skal returnere antallet som ble fjernet
+            // OBS! HVis treet er tomt skal det returneres "0"
 
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
@@ -122,6 +126,12 @@ public class EksamenSBinTre<T> {
     }
 
     public void nullstill() {
+        // Op6
+        // Skal traverese treet i EN eller annen rekkefølge (rekursivt eller iterativt)
+            // ...og sørge for at samtlige pekere og nodeverider i treet blir nullet
+            // ...aka. ikke tillstrekkelig å sette "rot" til "null" og "antall" til "0"
+            // ... se eksempel i doc
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
@@ -145,32 +155,49 @@ public class EksamenSBinTre<T> {
 
     public void postorden(Oppgave<? super T> oppgave) {
         // Op4
-        //
+        // Oppgave f.eks. skriv til skjerm (da vil metoden skrive ut treet til postorden)
+        // Implementer den første funksjonen uten bruk av;
+            // rekursjon
+            // bruk av hjelpevariabler (som stack/queue)
+        // Bruk funksjonen nestePostorden fra oppg. 3
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        // Finn først den første noden "p" i postorden
+        // Derretter vil setningen " p = nestePostorden(p); " gi den neste, osv, til "p" blir "null"
+
+        throw new UnsupportedOperationException("Skallkode skrevet");
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
-        // Op4
-        //
-
         postordenRecursive(rot, oppgave);
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        // Op4
+        // Oppgave f.eks. skriv til skjerm (da vil metoden skrive ut treet til postorden)
+
+        // Lag metode for et rekursivt kall som traverserer treet i postorden rekkefølge
+
+        throw new UnsupportedOperationException("Skallkode skrevet --");
     }
 
     public ArrayList<T> serialize() {
         // Op5
-        //
+        // Serialisere: Lage kompakt format egnet for lagring til f.eks. fil - array
+
+        // Metoden skal;
+            // Være iterativ
+            // Bruke en kø til å traversere treet i nivå orden
+
+        // Arrayet som returneres skal inneholde veridene i alle nodene i nivå orden
 
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
         // Op5
-        //
+        // Deserialisere: Lage et nytt tre ut ifra et array
+
+        // Skal ta det nye arrayet og legge inn alle veridene (OBS! i nivå order), og gjenskape treet
 
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
