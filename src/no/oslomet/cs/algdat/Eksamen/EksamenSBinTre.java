@@ -46,6 +46,7 @@ public class EksamenSBinTre<T> {
         comp = c;
     }
 
+    // Op2
     public boolean inneholder(T verdi) {
         if (verdi == null) return false;
 
@@ -61,6 +62,7 @@ public class EksamenSBinTre<T> {
         return false;
     }
 
+    // Op2
     public int antall() {
         return antall;
     }
@@ -79,24 +81,44 @@ public class EksamenSBinTre<T> {
         return s.toString();
     }
 
+    // Op2
     public boolean tom() {
         return antall == 0;
     }
 
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        // Op1
+        // Kopier programkode 5.2 3a)
+            // + endre forledre referansen slik at den får korrekt verdi
+                    // se; foreldrereferanse i klassen TreeSet i java.util
+        // sjekk at kode er feilfri (ikke kaster unntak), se doc
+
+        throw new UnsupportedOperationException("Skallkode skrevet");
     }
 
     public boolean fjern(T verdi) {
+        // Op6
+        //
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public int fjernAlle(T verdi) {
+        // Op6
+        //
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public int antall(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        // Op2
+        // Skal returnere antall forekomster av "verdi" i treet
+            // OBS! Det ER tillatt med duplikater, aka. en verdi kan forekomme flere ganger
+            // OBS2! Hvis veri = "null" skal metode returnere "0"
+        // Test kode med trær med flere like verdier
+            // Sjekk at metod gir ret svar, se; doc for et eks.
+
+        throw new UnsupportedOperationException("Skalkode skrevet");
     }
 
     public void nullstill() {
@@ -104,18 +126,34 @@ public class EksamenSBinTre<T> {
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        // Op3
+        // OBS! Parameter "p" != "null"
+        // Skal returnere første node postorden med "p" som rot
+        // OBS2! Hvis "p" er den siste i postorden skal det returneres "null"
+
+        throw new UnsupportedOperationException("Skallkode skrevet");
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        // Op3
+        // OBS! Parameter "p" != "null"
+        // Skal returnere den noden som kommer etter "p" i "postorden"
+        // OBS2! Hvis "p" er den siste i postorden skal det returneres "null"
+
+        throw new UnsupportedOperationException("Skallkode skrevet");
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
+        // Op4
+        //
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
+        // Op4
+        //
+
         postordenRecursive(rot, oppgave);
     }
 
@@ -124,10 +162,16 @@ public class EksamenSBinTre<T> {
     }
 
     public ArrayList<T> serialize() {
+        // Op5
+        //
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
+        // Op5
+        //
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
