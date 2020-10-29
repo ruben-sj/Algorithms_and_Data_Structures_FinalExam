@@ -91,7 +91,7 @@ public class EksamenSBinTre<T> {
         while (p != null)       // fortsetter til p er ute av treet
         {
             q = p;                                 // q er forelder til p
-            cmp = comp.compare(verdi,p.verdi);     // bruker komparatoren
+            cmp = comp.compare(verdi, p.verdi);     // bruker komparatoren
             p = cmp < 0 ? p.venstre : p.høyre;     // flytter p
         }
 
@@ -127,35 +127,36 @@ public class EksamenSBinTre<T> {
 
     public int antall(T verdi) {
 
-        // Setter antall lik "0"
-        int antall = 0;
+        // Setter count lik "0"
+        int count = 0;
 
         Node<T> p = rot;
 
         // Så lenge "p" ikke er lik "null"
-        while (p != null){
+        while (p != null) {
 
             // Sammenligner verdi og "p" sin verdi
             int cmp = comp.compare(verdi, p.verdi);
 
             // Hvis verdi er mindre enn "p" sin verdi --> gå til venstre
-            if (cmp < 0){
+            if (cmp < 0) {
                 p = p.venstre;
             }
 
             // Hvis verdi er større en "p" sin verdi --> gå til høyre
-            else if (cmp > 0) {
+            if (cmp >= 0) {
+
+                // Hvis verdien er lik "p" sin verdi --> øker antall
+                if (p.verdi == verdi){
+                    count++;
+                }
+
                 p = p.høyre;
             }
+        }
 
-            // Hvis verdien er lik "p" sin verdi --> øker antall
-            else {
-                    antall++;
-                }
-            }
-
-        // Returnerer antall
-        return antall;
+        // Returnerer count
+        return count;
     }
 
     public void nullstill() {
@@ -172,7 +173,7 @@ public class EksamenSBinTre<T> {
 
         // Tatt i bruk kode fra komendium av Ulf Utterud; Programkode 5.1.7 h)
 
-        while (true){
+        while (true) {
 
             // Hvis "p" sin venstre node ikke er lik null --> settes "p" lik "p" sin venstre node
             if (p.venstre != null) {
@@ -180,7 +181,7 @@ public class EksamenSBinTre<T> {
             }
 
             // Hvis "p" sin høyre node ikke er lik null --> settes "p" lik "p" sin høyre node
-            else if(p.høyre != null) {
+            else if (p.høyre != null) {
                 p = p.høyre;
             }
 
@@ -197,33 +198,32 @@ public class EksamenSBinTre<T> {
         if (p.forelder != null) {
 
             // Hvis "p" sin forelders høyre node er lik "p" eller lik "null" --> returneres "p" sin forelders node
-            if (p.forelder.høyre == p  || p.forelder.høyre == null) {
+            if (p.forelder.høyre == p || p.forelder.høyre == null) {
                 return p.forelder;
             }
 
             // Hvis "p" sin forelders venstre node er lik "p" --> returneres førstePostordens forelders høyre node
-            else if (p.forelder.venstre == p){
+            else if (p.forelder.venstre == p) {
                 return førstePostorden(p.forelder.høyre);
             }
-
-        // Hvis "p" er den siste i postorden --> returneres null
-        else {
-            return null;
         }
-
+        // Hvis "p" er den siste i postorden --> returneres null
+        return null;
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        // Op4
-        // Oppgave f.eks. skriv til skjerm (da vil metoden skrive ut treet til postorden)
-        // Implementer den første funksjonen uten bruk av;
-            // rekursjon
-            // bruk av hjelpevariabler (som stack/queue)
-        // Bruk funksjonen nestePostorden fra oppg. 3
 
-        // Finn først den første noden "p" i postorden
-        // Derretter vil setningen " p = nestePostorden(p); " gi den neste, osv, til "p" blir "null"
+        // Setter "p" lik roten av førstePostorden, aka. den første noden
+        Node<T> p = førstePostorden(rot);
 
+        // Oppgaves utførOppgave av "p" sin verdi
+        oppgave.utførOppgave(p.verdi);
+
+        // Så lenge "p" sin forelder ikke er lik "null" --> sett "p" lik nestePostorden av "p"
+        while (p.forelder != null) {
+            p = nestePostorden(p);
+            oppgave.utførOppgave(p.verdi);
+        }
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
