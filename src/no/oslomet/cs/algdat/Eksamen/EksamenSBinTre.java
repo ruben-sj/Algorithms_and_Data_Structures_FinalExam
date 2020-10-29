@@ -43,7 +43,6 @@ public class EksamenSBinTre<T> {
         comp = c;
     }
 
-    // Op2
     public boolean inneholder(T verdi) {
         if (verdi == null) return false;
 
@@ -59,7 +58,6 @@ public class EksamenSBinTre<T> {
         return false;
     }
 
-    // Op2
     public int antall() {
         return antall;
     }
@@ -78,7 +76,7 @@ public class EksamenSBinTre<T> {
         return s.toString();
     }
 
-    // Op2
+
     public boolean tom() {
         return antall == 0;
     }
@@ -128,14 +126,36 @@ public class EksamenSBinTre<T> {
     }
 
     public int antall(T verdi) {
-        // Op2
-        // Skal returnere antall forekomster av "verdi" i treet
-            // OBS! Det ER tillatt med duplikater, aka. en verdi kan forekomme flere ganger
-            // OBS2! Hvis verdi = "null" skal metode returnere "0"
-        // Test kode med trær med flere like verdier
-            // Sjekk at metod gir ret svar, se; doc for et eks.
 
-        throw new UnsupportedOperationException("Skalkode skrevet");
+        // Setter antall lik "0"
+        int antall = 0;
+
+        Node<T> p = rot;
+
+        // Så lenge "p" ikke er lik "null"
+        while (p != null){
+
+            // Sammenligner verdi og "p" sin verdi
+            int cmp = comp.compare(verdi, p.verdi);
+
+            // Hvis verdi er mindre enn "p" sin verdi --> gå til venstre
+            if (cmp < 0){
+                p = p.venstre;
+            }
+
+            // Hvis verdi er større en "p" sin verdi --> gå til høyre
+            else if (cmp > 0) {
+                p = p.høyre;
+            }
+
+            // Hvis verdien er lik "p" sin verdi --> øker antall
+            else {
+                    antall++;
+                }
+            }
+
+        // Returnerer antall
+        return antall;
     }
 
     public void nullstill() {
