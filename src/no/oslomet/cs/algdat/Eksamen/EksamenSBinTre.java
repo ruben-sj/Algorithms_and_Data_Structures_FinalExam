@@ -254,16 +254,36 @@ public class EksamenSBinTre<T> {
     }
 
     public ArrayList<T> serialize() {
-        // Op5
-        // Serialisere: Lage kompakt format egnet for lagring til f.eks. fil - array
 
-        // Metoden skal;
-            // Være iterativ
-            // Bruke en kø til å traversere treet i nivå orden
+        // Oppretter arraylisten "ut" og arraydequen "queue"
+        ArrayList<T> ut = new ArrayList<>();
+        ArrayDeque<Node<T>> queue = new ArrayDeque<>();
 
-        // Arrayet som returneres skal inneholde veridene i alle nodene i nivå orden
+        // Legger til rot-noden
+        queue.addFirst(rot);
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        // Så lenge "queue" ikke er tom
+        while (!queue.isEmpty()){
+
+            // Setter "p" lik "queue" sin removeFirst(), og fjerner første node
+            Node<T> p = queue.removeFirst();
+
+            // Hvis "p" sin høyre node ikke er lik "null" --> legges "p" sin høyre node til "queue"
+            if (p.høyre != null) {
+                queue.addLast(p.høyre);
+            }
+
+            // Hvis "p" sin venstre node ikke er lik "null" --> legges "p" sin venstre node til "queue"
+            else if (p.venstre != null) {
+                queue.addLast(p.venstre);
+            }
+
+            // Legger til "p" sin verdi
+            ut.add(p.verdi);
+        }
+
+        // Returnerer "ut"
+        return ut;
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
