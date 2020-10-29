@@ -192,11 +192,25 @@ public class EksamenSBinTre<T> {
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
-        // Op3
-        //x OBS! Parameter "p" != "null"
-        // Objects.requireNonNull(p, "p != null");
-        // Skal returnere den noden som kommer etter "p" i "postorden"
-        // OBS2! Hvis "p" er den siste i postorden skal det returneres "null"
+
+        // Hvis "p" sin forelder ikke er lik null --> sjekker vi videre om foreldres noder er lik "p"
+        if (p.forelder != null) {
+
+            // Hvis "p" sin forelders høyre node er lik "p" eller lik "null" --> returneres "p" sin forelders node
+            if (p.forelder.høyre == p  || p.forelder.høyre == null) {
+                return p.forelder;
+            }
+
+            // Hvis "p" sin forelders venstre node er lik "p" --> returneres førstePostordens forelders høyre node
+            else if (p.forelder.venstre == p){
+                return førstePostorden(p.forelder.høyre);
+            }
+
+        // Hvis "p" er den siste i postorden --> returneres null
+        else {
+            return null;
+        }
+
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
