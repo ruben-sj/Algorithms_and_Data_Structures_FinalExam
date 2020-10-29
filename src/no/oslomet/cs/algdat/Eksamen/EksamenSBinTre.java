@@ -216,7 +216,7 @@ public class EksamenSBinTre<T> {
         // Setter "p" lik roten av førstePostorden, aka. den første noden
         Node<T> p = førstePostorden(rot);
 
-        // Oppgaves utførOppgave av "p" sin verdi
+        // Bruker oppgaves utførOppgave av "p" sin verdi
         oppgave.utførOppgave(p.verdi);
 
         // Så lenge "p" sin forelder ikke er lik "null" --> sett "p" lik nestePostorden av "p"
@@ -231,12 +231,26 @@ public class EksamenSBinTre<T> {
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
-        // Op4
-        // Oppgave f.eks. skriv til skjerm (da vil metoden skrive ut treet til postorden)
 
-        // Lag metode for et rekursivt kall som traverserer treet i postorden rekkefølge
+        // Hvis "p" sin forelder er lik "null" --> brukes postordenRecursive med førstePostorden
+        if (p.forelder == null){
+            postordenRecursive(førstePostorden(p), oppgave);
+        }
 
-        throw new UnsupportedOperationException("Skallkode skrevet --");
+        // Hvis "p" ikke er lik "nul" --> brukes oppgaves utførOppgave av "p" sin verdi
+        else {
+            oppgave.utførOppgave(p.verdi);
+
+            // Hvis nestePostorden av "p" ikke er lik rot --> brukes postordenRecursive med nestePostorden
+            if (nestePostorden(p) != rot) {
+                postordenRecursive(nestePostorden(p), oppgave);
+            }
+
+            // Hvis nestePostorden av "p" er lik rot --> brukes oppgaves utførOppgave av rotens verdi
+            else {
+                oppgave.utførOppgave(rot.verdi);
+            }
+        }
     }
 
     public ArrayList<T> serialize() {
