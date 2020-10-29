@@ -169,23 +169,34 @@ public class EksamenSBinTre<T> {
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
-        // Op3
-        //x OBS! Parameter "p" != "null"
-        Objects.requireNonNull(p, "p != null");
-        // Skal returnere første node postorden med "p" som rot
-        // OBS2! Hvis "p" er den siste i postorden skal det returneres "null"
 
-        throw new UnsupportedOperationException("Skallkode skrevet");
+        // Tatt i bruk kode fra komendium av Ulf Utterud; Programkode 5.1.7 h)
+
+        while (true){
+
+            // Hvis "p" sin venstre node ikke er lik null --> settes "p" lik "p" sin venstre node
+            if (p.venstre != null) {
+                p = p.venstre;
+            }
+
+            // Hvis "p" sin høyre node ikke er lik null --> settes "p" lik "p" sin høyre node
+            else if(p.høyre != null) {
+                p = p.høyre;
+            }
+
+            // Ellers returneres bare "p" sin verdi som rot
+            else {
+                return p;
+            }
+        }
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
         // Op3
         //x OBS! Parameter "p" != "null"
-        Objects.requireNonNull(p, "p != null");
+        // Objects.requireNonNull(p, "p != null");
         // Skal returnere den noden som kommer etter "p" i "postorden"
         // OBS2! Hvis "p" er den siste i postorden skal det returneres "null"
-
-        throw new UnsupportedOperationException("Skallkode skrevet");
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
@@ -199,7 +210,6 @@ public class EksamenSBinTre<T> {
         // Finn først den første noden "p" i postorden
         // Derretter vil setningen " p = nestePostorden(p); " gi den neste, osv, til "p" blir "null"
 
-        throw new UnsupportedOperationException("Skallkode skrevet");
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
