@@ -1,10 +1,7 @@
 package no.oslomet.cs.algdat.Eksamen;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class EksamenSBinTre<T> {
     private static final class Node<T>   // en indre nodeklasse
@@ -87,13 +84,29 @@ public class EksamenSBinTre<T> {
     }
 
     public boolean leggInn(T verdi) {
-        // Op1
-        // Kopier programkode 5.2 3a)
-            // + endre forledre referansen slik at den får korrekt verdi
-                    // se; foreldrereferanse i klassen TreeSet i java.util
-        // sjekk at kode er feilfri (ikke kaster unntak), se doc
+        // Hente kode fra komendium av Ulf Utterud; Programkode 5.2.3 a)
+        // Endring av original kode fra 5.2.3a; "q" settes som forelder i "new Node"
 
-        throw new UnsupportedOperationException("Skallkode skrevet");
+        Node<T> p = rot, q = null;               // p starter i roten
+        int cmp = 0;                             // hjelpevariabel
+
+        while (p != null)       // fortsetter til p er ute av treet
+        {
+            q = p;                                 // q er forelder til p
+            cmp = comp.compare(verdi,p.verdi);     // bruker komparatoren
+            p = cmp < 0 ? p.venstre : p.høyre;     // flytter p
+        }
+
+        // p er nå null, dvs. ute av treet, q er den siste vi passerte
+
+        p = new Node<>(verdi, q);                   // oppretter en ny node
+
+        if (q == null) rot = p;                  // p blir rotnode
+        else if (cmp < 0) q.venstre = p;         // venstre barn til q
+        else q.høyre = p;                        // høyre barn til q
+
+        antall++;                                // én verdi mer i treet
+        return true;                             // vellykket innlegging
     }
 
     public boolean fjern(T verdi) {
@@ -118,7 +131,7 @@ public class EksamenSBinTre<T> {
         // Op2
         // Skal returnere antall forekomster av "verdi" i treet
             // OBS! Det ER tillatt med duplikater, aka. en verdi kan forekomme flere ganger
-            // OBS2! Hvis veri = "null" skal metode returnere "0"
+            // OBS2! Hvis verdi = "null" skal metode returnere "0"
         // Test kode med trær med flere like verdier
             // Sjekk at metod gir ret svar, se; doc for et eks.
 
@@ -137,7 +150,8 @@ public class EksamenSBinTre<T> {
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
         // Op3
-        // OBS! Parameter "p" != "null"
+        //x OBS! Parameter "p" != "null"
+        Objects.requireNonNull(p, "p != null");
         // Skal returnere første node postorden med "p" som rot
         // OBS2! Hvis "p" er den siste i postorden skal det returneres "null"
 
@@ -146,7 +160,8 @@ public class EksamenSBinTre<T> {
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
         // Op3
-        // OBS! Parameter "p" != "null"
+        //x OBS! Parameter "p" != "null"
+        Objects.requireNonNull(p, "p != null");
         // Skal returnere den noden som kommer etter "p" i "postorden"
         // OBS2! Hvis "p" er den siste i postorden skal det returneres "null"
 
