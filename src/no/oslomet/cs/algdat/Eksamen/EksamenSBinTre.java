@@ -116,16 +116,21 @@ public class EksamenSBinTre<T> {
     }
 
     public int fjernAlle(T verdi) {
-        // Op6
-        // Skal fjerne alle forekomster av verdi i treet
-            // OBS! Duplikater er tillat, aka. en og samme verdi kan ligge flere steder i treet
-        // Skal returnere antallet som ble fjernet
-            // OBS! HVis treet er tomt skal det returneres "0"
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        // Setter "fjernet" lik "0"
+        int fjernet = 0;
+
+        while(fjern(verdi)){
+
+            // Oppdaterer "fjernet"
+            fjernet++;
+        }
+
+        // Returnere fjernet
+        return fjernet;
     }
 
-    public int antall(T verdi) {
+    public int antall (T verdi){
 
         // Setter count lik "0"
         int count = 0;
@@ -147,7 +152,7 @@ public class EksamenSBinTre<T> {
             if (cmp >= 0) {
 
                 // Hvis verdien er lik "p" sin verdi --> øker antall
-                if (p.verdi == verdi){
+                if (p.verdi == verdi) {
                     count++;
                 }
 
@@ -159,10 +164,10 @@ public class EksamenSBinTre<T> {
         return count;
     }
 
-    public void nullstill() {
+    public void nullstill () {
 
         // Så lenge "antall" ikke er "tom()"
-        while(!tom()){
+        while (!tom()) {
 
             // Setter node "p" lik roten av førstePostorden
             Node<T> p = førstePostorden(rot);
@@ -181,7 +186,7 @@ public class EksamenSBinTre<T> {
         rot = null;
     }
 
-    private static <T> Node<T> førstePostorden(Node<T> p) {
+    private static <T > Node < T > førstePostorden(Node < T > p) {
 
         // Tatt i bruk kode fra komendium av Ulf Utterud; Programkode 5.1.7 h)
 
@@ -204,7 +209,7 @@ public class EksamenSBinTre<T> {
         }
     }
 
-    private static <T> Node<T> nestePostorden(Node<T> p) {
+    private static <T > Node < T > nestePostorden(Node < T > p) {
 
         // Hvis "p" sin forelder ikke er lik null --> sjekker vi videre om foreldres noder er lik "p"
         if (p.forelder != null) {
@@ -223,7 +228,7 @@ public class EksamenSBinTre<T> {
         return null;
     }
 
-    public void postorden(Oppgave<? super T> oppgave) {
+    public void postorden (Oppgave < ? super T > oppgave){
 
         // Setter "p" lik roten av førstePostorden, aka. den første noden
         Node<T> p = førstePostorden(rot);
@@ -238,14 +243,14 @@ public class EksamenSBinTre<T> {
         }
     }
 
-    public void postordenRecursive(Oppgave<? super T> oppgave) {
+    public void postordenRecursive (Oppgave < ? super T > oppgave){
         postordenRecursive(rot, oppgave);
     }
 
-    private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
+    private void postordenRecursive (Node < T > p, Oppgave < ? super T > oppgave){
 
         // Hvis "p" sin forelder er lik "null" --> brukes postordenRecursive med førstePostorden
-        if (p.forelder == null){
+        if (p.forelder == null) {
             postordenRecursive(førstePostorden(p), oppgave);
         }
 
@@ -265,7 +270,7 @@ public class EksamenSBinTre<T> {
         }
     }
 
-    public ArrayList<T> serialize() {
+    public ArrayList<T> serialize () {
 
         // Oppretter arraylisten "list" og arraydequen "queue"
         ArrayList<T> liste = new ArrayList<>();
@@ -275,7 +280,7 @@ public class EksamenSBinTre<T> {
         queue.addFirst(rot);
 
         // Så lenge "queue" ikke er tom
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
 
             // Setter "p" lik "queue" sin removeFirst(), og fjerner første node
             Node<T> p = queue.removeFirst();
@@ -298,15 +303,14 @@ public class EksamenSBinTre<T> {
         return liste;
     }
 
-    static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
+    static <K > EksamenSBinTre < K > deserialize(ArrayList < K > data, Comparator < ? super K > c) {
         // Opretter et nytt tre "ut"
         EksamenSBinTre<K> ut = new EksamenSBinTre<>(c);
 
         // Legge inn alle verdiene i nivå orden, og gjenskaper treet
-        for (K value : data){
+        for (K value : data) {
             ut.leggInn(value);
         }
         return ut;
     }
-
-} // ObligSBinTre
+}// ObligSBinTre
