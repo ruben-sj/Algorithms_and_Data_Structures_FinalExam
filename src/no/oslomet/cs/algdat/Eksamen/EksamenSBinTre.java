@@ -326,14 +326,14 @@ public class EksamenSBinTre<T> {
             // Setter "p" lik "queue" sin removeFirst(), og fjerner første node
             Node<T> p = queue.removeFirst();
 
+            // Hvis "p" sin venstre node ikke er lik "null" --> legges "p" sin venstre node til "queue"
+            if (p.venstre != null) {
+                queue.addLast(p.venstre);
+            }
+
             // Hvis "p" sin høyre node ikke er lik "null" --> legges "p" sin høyre node til "queue"
             if (p.høyre != null) {
                 queue.addLast(p.høyre);
-            }
-
-            // Hvis "p" sin venstre node ikke er lik "null" --> legges "p" sin venstre node til "queue"
-            else if (p.venstre != null) {
-                queue.addLast(p.venstre);
             }
 
             // Legger til "p" sin verdi
