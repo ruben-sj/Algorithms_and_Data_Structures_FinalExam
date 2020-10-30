@@ -255,8 +255,8 @@ public class EksamenSBinTre<T> {
 
     public ArrayList<T> serialize() {
 
-        // Oppretter arraylisten "ut" og arraydequen "queue"
-        ArrayList<T> ut = new ArrayList<>();
+        // Oppretter arraylisten "list" og arraydequen "queue"
+        ArrayList<T> liste = new ArrayList<>();
         ArrayDeque<Node<T>> queue = new ArrayDeque<>();
 
         // Legger til rot-noden
@@ -279,21 +279,22 @@ public class EksamenSBinTre<T> {
             }
 
             // Legger til "p" sin verdi
-            ut.add(p.verdi);
+            liste.add(p.verdi);
         }
 
         // Returnerer "ut"
-        return ut;
+        return liste;
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
-        // Op5
-        // Deserialisere: Lage et nytt tre ut ifra et array
+        // Opretter et nytt tre "ut"
+        EksamenSBinTre<K> ut = new EksamenSBinTre<>(c);
 
-        // Skal ta det nye arrayet og legge inn alle veridene (OBS! i nivå order), og gjenskape treet
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        // Legge inn alle verdiene i nivå orden, og gjenskaper treet
+        for (K value : data){
+            ut.leggInn(value);
+        }
+        return ut;
     }
-
 
 } // ObligSBinTre
