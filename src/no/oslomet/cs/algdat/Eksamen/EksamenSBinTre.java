@@ -82,7 +82,7 @@ public class EksamenSBinTre<T> {
     }
 
     public boolean leggInn(T verdi) {
-        // Hente kode fra komendium av Ulf Utterud; Programkode 5.2.3 a)
+        // Hente kode fra kompendium av Ulf Utterud; Programkode 5.2.3 a)
         // Endring av original kode fra 5.2.3a; "q" settes som forelder i "new Node", endring*
 
         Objects.requireNonNull(verdi, "Ulovlig med nullverdier!");
@@ -111,7 +111,7 @@ public class EksamenSBinTre<T> {
 
     public boolean fjern(T verdi) {
 
-        // Tatt i bruk kode fra komendium av Ulf Utterud; Programkode 5.2.8 d)
+        // Tatt i bruk kode fra kompendium av Ulf Utterud; Programkode 5.2.8 d)
         // La til endring i koden fra kompendiet av peker slik at forelder får korrekt verdi, endring 1* og 2*
         // La også til endring i koden fra kompendiet gjennom en liten oppdatering av "endringer", endring 3*
 
@@ -231,7 +231,7 @@ public class EksamenSBinTre<T> {
 
     private static <T > Node < T > førstePostorden(Node < T > p) {
 
-        // Tatt i bruk kode fra komendium av Ulf Utterud; Programkode 5.1.7 h)
+        // Tatt i bruk kode fra kompendium  av Ulf Utterud; Programkode 5.1.7 h)
 
         while (true) {
 

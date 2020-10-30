@@ -18,3 +18,14 @@ Vi har brukt git til å dokumentere arbeidet vårt. Jeg har 16 commits totalt, o
 
 * Oppgave 1: Løste ved å implementere ...
 * Oppgave 2: ...
+
+
+Warnings i «EksamenSBinTre.java»:
+
+- Non-ASCII characters in an identifier :10
+- Private field 'endringer' is assigned but never accessed :35
+- Method 'inneholder(T)' is never used :46
+- Return value of the method is never used :84
+- Non-ASCII characters in an identifier :232
+- Dereference of 'p' may produce 'NullPointerException' :285
+- Argument 'nestePostorden(p)' might be null :306
