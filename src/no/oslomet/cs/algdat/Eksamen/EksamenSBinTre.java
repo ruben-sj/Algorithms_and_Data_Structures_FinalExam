@@ -83,7 +83,9 @@ public class EksamenSBinTre<T> {
 
     public boolean leggInn(T verdi) {
         // Hente kode fra komendium av Ulf Utterud; Programkode 5.2.3 a)
-        // Endring av original kode fra 5.2.3a; "q" settes som forelder i "new Node"
+        // Endring av original kode fra 5.2.3a; "q" settes som forelder i "new Node", endring*
+
+        Objects.requireNonNull(verdi, "Ulovlig med nullverdier!");
 
         Node<T> p = rot, q = null;               // p starter i roten
         int cmp = 0;                             // hjelpevariabel
@@ -97,7 +99,7 @@ public class EksamenSBinTre<T> {
 
         // p er nå null, dvs. ute av treet, q er den siste vi passerte
 
-        p = new Node<>(verdi, q);                   // oppretter en ny node
+        p = new Node<>(verdi, q);                   // oppretter en ny node, endring*
 
         if (q == null) rot = p;                  // p blir rotnode
         else if (cmp < 0) q.venstre = p;         // venstre barn til q
