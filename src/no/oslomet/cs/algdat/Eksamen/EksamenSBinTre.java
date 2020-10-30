@@ -231,7 +231,7 @@ public class EksamenSBinTre<T> {
 
     private static <T > Node < T > førstePostorden(Node < T > p) {
 
-        // Tatt i bruk kode fra kompendium  av Ulf Utterud; Programkode 5.1.7 h)
+        // Tatt i bruk kode fra kompendium av Ulf Utterud; Programkode 5.1.7 h)
 
         while (true) {
 
