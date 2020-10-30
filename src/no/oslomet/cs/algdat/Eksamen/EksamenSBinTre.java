@@ -160,13 +160,25 @@ public class EksamenSBinTre<T> {
     }
 
     public void nullstill() {
-        // Op6
-        // Skal traverese treet i EN eller annen rekkefølge (rekursivt eller iterativt)
-            // ...og sørge for at samtlige pekere og nodeverider i treet blir nullet
-            // ...aka. ikke tillstrekkelig å sette "rot" til "null" og "antall" til "0"
-            // ... se eksempel i doc
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        // Så lenge "antall" ikke er "tom()"
+        while(!tom()){
+
+            // Setter node "p" lik roten av førstePostorden
+            Node<T> p = førstePostorden(rot);
+
+            // Setter "p" sin høyre, venstre, forelder og verdi lik "null"
+            p.høyre = null;
+            p.venstre = null;
+            p.forelder = null;
+            p.verdi = null;
+
+            // Oppdaterer antall
+            antall--;
+        }
+
+        // Setter roten lik "null"
+        rot = null;
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
